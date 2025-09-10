@@ -596,16 +596,16 @@
         const total = subtotal + delivery;
         const itemsText = orderItems.length
           ? orderItems
-              .map((it) => `📦 Product: ${it.name} – Qty: ${it.qty}`)
+              .map((it) => ` Product: ${it.name} – Qty: ${it.qty}`)
               .join("\n")
           : "No products added yet.";
         const holdText =
           holdInfoState && holdInfoState.date
             ? `\n\n⏳ Hold until: ${holdInfoState.date}`
             : "";
-        const preview = `✅ Your order has been confirmed!\n\nCustomer Details:\n👤 Name: ${name}\n📱 Mobile: ${phone}\n🏠 Address: ${addr}\n${
-          note ? "📝 Note: " + note + "\n" : ""
-        }\nOrder Details:\n${itemsText}\n\n💵 Subtotal: ${subtotal}\n🚚 Delivery Charge: ${delivery}\n💰 Total: ${total}\n\nThank you, Sir 🙏\nOur team will contact you soon regarding delivery.${holdText}`;
+        const preview = `❤ Your order has been confirmed!\n\nCustomer Details:\n Name: ${name}\n Mobile: ${phone}\n Address: ${addr}\n${
+          note ? " Note: " + note + "\n" : ""
+        }\nOrder Details:\n${itemsText}\n\n Subtotal: ${subtotal}\n Delivery Charge: ${delivery}\n Total: ${total}\n\nThank you, Sir/Madam \nOur team will contact you soon regarding delivery.${holdText}`;
         orderPreview.textContent = preview;
       }
 
