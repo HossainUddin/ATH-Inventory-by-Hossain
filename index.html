@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventory App — Login + Table</title>
+    <meta
+      name="description"
+      content="Single-file inventory manager with login, description, edit, quick view, responsive design, and localStorage."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .img-200 { width:200px; height:200px; object-fit:cover; border-radius:0.5rem; }
+      .focus-ring:focus { outline:none; box-shadow:0 0 0 3px rgba(59,130,246,0.25); }
+      #login { display:block; }
+      #app { display:none; }
+    </style>
+  </head>
+  <body class="bg-slate-300 text-slate-800 min-h-screen">
+    <!-- Login -->
+    <section id="login" class="min-h-screen grid place-items-center p-6">
+      <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-6 space-y-6">
+        <h1 class="text-2xl font-bold text-center">ATH Gadgets Inventory Login</h1>
+        <div class="space-y-3">
+          <input id="loginUser" class="w-full border rounded-xl p-2 focus-ring" placeholder="Username" />
+          <input id="loginPass" type="password" class="w-full border rounded-xl p-2 focus-ring" placeholder="Password" />
+        </div>
+        <div>
+          <div class="text-xl font-medium mb-2">Remember for</div>
+          <div class="grid grid-cols-4 gap-2">
+            <button type="button" class="dur-btn border rounded-xl px-3 py-2" data-hours="1">1h</button>
+            <button type="button" class="dur-btn border rounded-xl px-3 py-2" data-hours="2">2h</button>
+            <button type="button" class="dur-btn border rounded-xl px-3 py-2" data-hours="3">3h</button>
+            <button type="button" class="dur-btn border rounded-xl px-3 py-2" data-hours="5">5h</button>
+          </div>
+        </div>
+        <button id="btnLogin" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl px-4 py-2">Sign in</button>
+        <p id="loginErr" class="text-center text-xl text-rose-600 hidden">Invalid credentials or duration not selected.</p>
+        <p class="text-xs text-slate-500 text-center">Athadmin / Ath@2025</p>
+      </div>
+    </section>
+
+    <!-- App -->
+    <section id="app" class="p-6">
+      <header class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white rounded-2xl shadow p-4">
+        <div class="flex items-center gap-3">
+            <img
+              class="min-w-[50px] max-w-[80px] rounded-full"
+              src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/499602495_122110077002873119_3903198240653849355_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHAPxGuNHyF_JA8pW1C99v9KDSBrrvMtEwoNIGuu8y0TEETFPmqtPqKFRHdOaa4Hfb1ExJ6JlYQR4R9ljzQhTnl&_nc_ohc=7vSH32p6nMwQ7kNvwFbZ4NJ&_nc_oc=Adn2CGDOftnSa0KnhumlEOFr0IRba-YjtdHROuyeNfdedKGx3NhoKQRENGSrctKlLG4&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=C5q52kCu-rinIfbDX8SIAA&oh=00_AfYBIVuHb65rHlv5lIwGX_d8walvnBt7yCK7bFO_OrTmWg&oe=68C573CB"
+              alt=""
+            />
+            <h1 class="text-2xl font-bold">ATH Inventory Manager</h1>
+
+            <button class="bg-purple-500 hover:bg-purple-900 px-6 py-2 rounded-2xl text-white font-bold "><a href="order.html">Order Page</a></button>
+          </div>
+        <div class="flex items-center gap-3">
+          <div id="signedAs" class="text-xl text-slate-600"></div>
+          <button id="btnLogout" class="border rounded-xl px-3 py-2 bg-red-500 text-white font-semibold hover:bg-red-600">Logout</button>
+        </div>
+      </header>
+
+      <main class="max-w-6xl mx-auto mt-6 space-y-6">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex gap-2 w-full sm:w-auto">
+            <button id="btnExport" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-yellow-300 hover:bg-yellow-400 font-semibold">📥 Export JSON</button>
+            <label class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-orange-400 hover:bg-orange-500 font-semibold cursor-pointer">📤 Import JSON
+              <input id="inpFile" type="file" accept="application/json" class="hidden" />
+            </label>
+            <button id="btnClear" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold">❌ Clear All</button>
+          </div>
+
+          <div class="flex-1 flex items-center">
+            <h3
+              class="bg-sky-600 text-white p-2 rounded-l-xl flex items-center font-semibold whitespace-nowrap"
+            >
+             🔎Search
+            </h3>
+            <input id="inpSearch" class="w-full border rounded-r-xl p-2 focus-ring" placeholder="Search by name..." />
+          </div>
+        </div>
+
+        <!-- Add form -->
+        <form id="formAdd" class="bg-white rounded-2xl shadow p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <input id="fName" class="border rounded-xl p-2 focus-ring" placeholder="Item name" required />
+          <input id="fBuy" type="number" min="0" step="0.01" class="border rounded-xl p-2 focus-ring" placeholder="Buying Price" required />
+          <input id="fSell" type="number" min="0" step="0.01" class="border rounded-xl p-2 focus-ring" placeholder="Sell Price" required />
+          <input id="fImg" type="url" class="border rounded-xl p-2 focus-ring" placeholder="Image URL" />
+          <textarea id="fDesc" rows="2" class="border rounded-xl p-2 focus-ring col-span-full" placeholder="Description"></textarea>
+          <button class="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-4 py-2 col-span-full sm:col-span-2 lg:col-span-1">Add</button>
+        </form>
+
+        <!-- Table -->
+        <div class="bg-white rounded-2xl shadow p-4 overflow-x-auto">
+          <table class="min-w-full text-lg">
+            <thead>
+              <tr class="text-left text-slate-500 border-b">
+                <th class="py-2 pr-4">No</th>
+                <th class="py-2 pr-4">Image</th>
+                <th class="py-2 pr-4">Name</th>
+                <th class="py-2 pr-4">Description</th>
+                <th class="py-2 pr-4">Buying</th>
+                <th class="py-2 pr-4">Selling</th>
+                <th class="py-2 pr-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tblBody"></tbody>
+          </table>
+        </div>
+      </main>
+      <footer class="max-w-6xl mx-auto mt-6 rounded-2xl space-y-6 text-center py-5 text-xl bg-black text-white">
+        © 2025. All rights reserved by
+        <a class="font-bold underline" href="https://www.facebook.com/HossainUddin0" target="_blank"
+          >Hossain Uddin Ahamad</a
+        >
+      </footer>
+    </section>
+
+    <!-- Quick View/Edit Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-6 space-y-4">
+        <h2 id="modalTitle" class="text-xl font-bold"></h2>
+        <img id="modalImg" class="img-200 mx-auto" src="" alt="" />
+        <p><strong>Buying:</strong> <span id="modalBuy"></span></p>
+        <p><strong>Selling:</strong> <span id="modalSell"></span></p>
+        <div>
+          <strong>Description:</strong>
+          <pre id="modalDesc" class="whitespace-pre-wrap text-slate-700"></pre>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button id="btnEdit" class="px-3 py-2 bg-yellow-500 rounded-xl">Edit</button>
+          <button id="btnDelete" class="px-3 py-2 bg-red-500 text-white rounded-xl">Delete</button>
+          <button id="btnClose" class="px-3 py-2 border rounded-xl">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const ACCOUNTS = [{ username: "Athadmin", password: "Ath@2025" }];
+      const LS_SESSION = "inv_session";
+      const LS_ITEMS = "inv_items";
+      const $ = (s,r=document)=>r.querySelector(s);
+      const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+
+      const loginSection=$('#login'), appSection=$('#app');
+      const loginUser=$('#loginUser'), loginPass=$('#loginPass');
+      const durBtns=$$('.dur-btn');
+      const btnLogin=$('#btnLogin'), loginErr=$('#loginErr');
+      const signedAs=$('#signedAs'), btnLogout=$('#btnLogout');
+      const formAdd=$('#formAdd'), fName=$('#fName'), fBuy=$('#fBuy'), fSell=$('#fSell'), fImg=$('#fImg'), fDesc=$('#fDesc');
+      const tblBody=$('#tblBody'), inpSearch=$('#inpSearch');
+      const btnExport=$('#btnExport'), inpFile=$('#inpFile'), btnClear=$('#btnClear');
+      const modal=$('#modal'), modalTitle=$('#modalTitle'), modalImg=$('#modalImg'), modalBuy=$('#modalBuy'), modalSell=$('#modalSell'), modalDesc=$('#modalDesc');
+      const btnEdit=$('#btnEdit'), btnDelete=$('#btnDelete'), btnClose=$('#btnClose');
+
+      let items=[], currentId=null;
+
+      // Session
+      let duration=0;
+      durBtns.forEach(b=>b.onclick=()=>{durBtns.forEach(x=>x.classList.remove("bg-blue-600","text-white"));b.classList.add("bg-blue-600","text-white");duration=+b.dataset.hours;});
+      function saveSession(u,h){localStorage.setItem(LS_SESSION,JSON.stringify({u,exp:Date.now()+h*3600000}));}
+      function getSession(){try{let s=JSON.parse(localStorage.getItem(LS_SESSION));if(s&&Date.now()<s.exp)return s;}catch{};localStorage.removeItem(LS_SESSION);return null;}
+      function requireAuth(){let s=getSession();if(s){loginSection.style.display="none";appSection.style.display="block";signedAs.textContent="👨🏻‍💻 Signed in as "+s.u;}else{loginSection.style.display="block";appSection.style.display="none";}}
+
+      btnLogin.onclick=()=>{let u=loginUser.value.trim(),p=loginPass.value;let ok=ACCOUNTS.find(a=>a.username===u&&a.password===p);if(ok&&duration>0){saveSession(u,duration);loginErr.classList.add("hidden");requireAuth();loadAndRender();}else{loginErr.classList.remove("hidden");}};
+      btnLogout.onclick=()=>{localStorage.removeItem(LS_SESSION);requireAuth();};
+
+      // Items
+      function loadItems(){try{return JSON.parse(localStorage.getItem(LS_ITEMS))||[]}catch{return[]}}
+      function saveItems(x){localStorage.setItem(LS_ITEMS,JSON.stringify(x))}
+      function addItem(obj){items.push(obj);saveItems(items);renderTable(inpSearch.value.trim());}
+      function removeItem(id){items=items.filter(i=>i.id!==id);saveItems(items);renderTable(inpSearch.value.trim());}
+
+      function renderTable(filter=""){
+        tblBody.innerHTML="";
+        const q=filter.toLowerCase();
+        items.filter(it=>(it.name||"").toLowerCase().includes(q)).forEach((it,idx)=>{
+          const tr=document.createElement("tr");
+          tr.className="border-b last:border-0";
+          tr.innerHTML=`<td class='py-2 pr-4'>${idx+1}</td>
+            <td class='py-2 pr-4'><img class='img-200' src="${escapeHtml(it.img)}" onerror="this.src=''"/></td>
+            <td class='py-2 pr-4 font-medium'>${escapeHtml(it.name)}</td>
+            <td class='py-2 pr-4 max-w-[200px] truncate'>${escapeHtml(it.desc||"")}</td>
+            <td class='py-2 pr-4'>${formatMoney(it.buy)}</td>
+            <td class='py-2 pr-4'>${formatMoney(it.sell)}</td>
+            <td class='py-2 pr-4'><button data-id='${it.id}' class='view-btn text-blue-600'>View</button></td>`;
+          tblBody.appendChild(tr);
+        });
+        $$('.view-btn',tblBody).forEach(b=>b.onclick=()=>openModal(b.dataset.id));
+      }
+
+      function formatMoney(n){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+      function escapeHtml(s){return String(s||"").replace(/[&"'<>]/g,c=>({'&':'&amp;','"':'&quot;','\'':'&#39;','<':'&lt;','>':'&gt;'}[c]));}
+
+      formAdd.onsubmit=e=>{e.preventDefault();let obj={id:"id"+Date.now(),name:fName.value.trim(),buy:+fBuy.value||0,sell:+fSell.value||0,img:fImg.value.trim(),desc:fDesc.value.trim()};addItem(obj);formAdd.reset();};
+      inpSearch.oninput=()=>renderTable(inpSearch.value);
+      btnExport.onclick=()=>{const blob=new Blob([JSON.stringify(items,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='inventory.json';a.click();};
+      inpFile.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{items=JSON.parse(r.result);saveItems(items);renderTable(inpSearch.value);}catch{alert('Invalid JSON')}};r.readAsText(f);};
+      btnClear.onclick=()=>{if(confirm('Delete all?')){items=[];saveItems(items);renderTable('')}};
+
+      function openModal(id){const it=items.find(x=>x.id===id);if(!it)return;currentId=id;modalTitle.textContent=it.name;modalImg.src=it.img;modalBuy.textContent=formatMoney(it.buy);modalSell.textContent=formatMoney(it.sell);modalDesc.textContent=it.desc||"";modal.classList.remove('hidden');}
+      btnClose.onclick=()=>modal.classList.add('hidden');
+      btnDelete.onclick=()=>{removeItem(currentId);modal.classList.add('hidden');};
+      btnEdit.onclick=()=>{const it=items.find(x=>x.id===currentId);if(!it)return;fName.value=it.name;fBuy.value=it.buy;fSell.value=it.sell;fImg.value=it.img;fDesc.value=it.desc;removeItem(currentId);modal.classList.add('hidden');};
+
+      function loadAndRender(){items=loadItems();renderTable();}
+
+      requireAuth();if(getSession())loadAndRender();
+    </script>
+  </body>
+</html>
