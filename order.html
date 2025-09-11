@@ -333,45 +333,8 @@
       let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || "[]");
       if (!Array.isArray(products) || products.length === 0) {
         products = [
-          { id: uid(), name: "SX21 Mini Wireless Microphone", price: 20 },
-          { id: uid(), name: "K13 Dual Wireless Mic", price: 20 },
-          { id: uid(), name: "Recrsi RE-NY060 Bluetooth Neckband", price: 20 },
-          {
-            id: uid(),
-            name: "Ulanzi J12 Wireless Lavalier Microphone (Type-C)",
-            price: 20,
-          },
-          { id: uid(), name: "Qiimos S5B Mobile Gimbal", price: 20 },
-          { id: uid(), name: "F10 3-Axis Handheld Gimbal", price: 20 },
-          { id: uid(), name: "M25 Wireless Earbuds", price: 620 },
-          { id: uid(), name: "H2O Humidifie", price: 499 },
-          { id: uid(), name: "K12 Karaoke Bluetooth Speaker", price: 499 },
-          { id: uid(), name: "AWEI P10K Power Bank", price: 999 },
-          { id: uid(), name: "M10 TWS Earbuds", price: 330 },
-          { id: uid(), name: "Galaxy Projector", price: 999 },
-          { id: uid(), name: "KW5 Ultra 2 Smart Watch", price: 900 },
-          { id: uid(), name: "TWS M28 Earbuds", price: 420 },
-          { id: uid(), name: "T900 Ultra 2 Smart Watch", price: 499 },
-          { id: uid(), name: "M90 PRO Earbuds", price: 499 },
-          { id: uid(), name: "Y80 ULTRA Smart Watch", price: 899 },
-          { id: uid(), name: "MX-75 Neckband", price: 440 },
-          { id: uid(), name: "HTC AT-538 Hair Trimmer", price: 499 },
-          { id: uid(), name: "OnePlus Air-R03 Earbuds", price: 499 },
-          { id: uid(), name: "AirPods A9 Pro Earbuds", price: 770 },
-          {
-            id: uid(),
-            name: "Mecha A88 Transparent Bluetooth Speaker",
-            price: 899,
-          },
-          { id: uid(), name: "16-Color RGB LED Light", price: 699 },
-          {
-            id: uid(),
-            name: "Kemei KM-6330 3-in-1 Hair Clipper Grooming Kit",
-            price: 899,
-          },
-          { id: uid(), name: "OnePlus Bullets Wireless Pro", price: 270 },
+          { id: uid(), name: "Gadget A", price: 1000 }
         ];
-
         localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
       }
       function saveProducts() {
