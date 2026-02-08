@@ -36,7 +36,6 @@
         </div>
         <button id="btnLogin" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl px-4 py-2">Sign in</button>
         <p id="loginErr" class="text-center text-xl text-rose-600 hidden">Invalid credentials or duration not selected.</p>
-        <p class="text-xs text-slate-500 text-center">Athadmin / Ath@2025</p>
       </div>
     </section>
 
@@ -46,7 +45,7 @@
         <div class="flex items-center gap-3">
             <img
               class="min-w-[50px] max-w-[80px] rounded-full"
-              src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-6/499602495_122110077002873119_3903198240653849355_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHAPxGuNHyF_JA8pW1C99v9KDSBrrvMtEwoNIGuu8y0TEETFPmqtPqKFRHdOaa4Hfb1ExJ6JlYQR4R9ljzQhTnl&_nc_ohc=7vSH32p6nMwQ7kNvwFbZ4NJ&_nc_oc=Adn2CGDOftnSa0KnhumlEOFr0IRba-YjtdHROuyeNfdedKGx3NhoKQRENGSrctKlLG4&_nc_zt=23&_nc_ht=scontent.fdac138-2.fna&_nc_gid=C5q52kCu-rinIfbDX8SIAA&oh=00_AfYBIVuHb65rHlv5lIwGX_d8walvnBt7yCK7bFO_OrTmWg&oe=68C573CB"
+              src="https://scontent.fdac207-1.fna.fbcdn.net/v/t39.30808-6/629979913_122244193448873119_5794820859219743261_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE7FITC318FQ8l8lX_GUI2K8xB_8BHuIm3zEH_wEe4ibYoolgzDtD2zZfE1yk7QBiy2ztFyD4SULpTn1oZogf_O&_nc_ohc=FP22MDvWMK4Q7kNvwEnuyiD&_nc_oc=AdnaAm-z61Zzi546kxmRHqPgBPSry4xy1Z-Q4RDet8fen2hWjkGmFgrCX7GfPRJfG10&_nc_zt=23&_nc_ht=scontent.fdac207-1.fna&_nc_gid=k-6T8zzJFU04t-WlzMt4cQ&oh=00_AfvQGCIhQoMCaE_KCVk9LZTNKGB3Np1lNp6kPk6CkSGWkQ&oe=698DCDC3"
               alt=""
             />
             <h1 class="text-2xl font-bold">ATH Inventory Manager</h1>
@@ -62,11 +61,11 @@
       <main class="max-w-6xl mx-auto mt-6 space-y-6">
         <div class="flex flex-col sm:flex-row gap-4">
           <div class="flex gap-2 w-full sm:w-auto">
-            <button id="btnExport" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-yellow-300 hover:bg-yellow-400 font-semibold">📥 Export JSON</button>
-            <label class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-orange-400 hover:bg-orange-500 font-semibold cursor-pointer">📤 Import JSON
+            <button id="btnExport" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-yellow-300 hover:bg-yellow-400 font-semibold">📤 Export JSON</button>
+            <label class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-orange-400 hover:bg-orange-500 font-semibold cursor-pointer">📥 Import JSON
               <input id="inpFile" type="file" accept="application/json" class="hidden" />
             </label>
-            <button id="btnClear" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-pink-500 hover:bg-pink-600 text-white font-semibold">❌ Clear All</button>
+            <button id="btnClear" type="button" class="flex-1 sm:flex-none border rounded-xl px-3 py-2 bg-gray-800 hover:bg-pink-600 text-white font-semibold">❌ Clear All</button>
           </div>
 
           <div class="flex-1 flex items-center">
@@ -83,7 +82,7 @@
         <form id="formAdd" class="bg-white rounded-2xl shadow p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <input id="fName" class="border rounded-xl p-2 focus-ring" placeholder="Item name" required />
           <input id="fBuy" type="number" min="0" step="0.01" class="border rounded-xl p-2 focus-ring" placeholder="Buying Price" required />
-          <input id="fSell" type="number" min="0" step="0.01" class="border rounded-xl p-2 focus-ring" placeholder="Sell Price" required />
+          <input id="fprice" type="number" min="0" step="0.01" class="border rounded-xl p-2 focus-ring" placeholder="price Price" required />
           <input id="fImg" type="url" class="border rounded-xl p-2 focus-ring" placeholder="Image URL" />
           <textarea id="fDesc" rows="2" class="border rounded-xl p-2 focus-ring col-span-full" placeholder="Description"></textarea>
           <button class="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-4 py-2 col-span-full sm:col-span-2 lg:col-span-1">Add</button>
@@ -107,7 +106,7 @@
           </table>
         </div>
       </main>
-      <footer class="max-w-6xl mx-auto mt-6 rounded-2xl space-y-6 text-center py-5 text-xl bg-black text-white">
+      <footer class="max-w-6xl mx-auto mt-6 rounded-2xl space-y-6 text-center py-2 text-sm bg-black text-white">
         © 2025. All rights reserved by
         <a class="font-bold underline" href="https://www.facebook.com/HossainUddin0" target="_blank"
           >Hossain Uddin Ahamad</a
@@ -120,8 +119,8 @@
       <div class="bg-white rounded-2xl shadow-xl max-w-lg w-full p-6 space-y-4">
         <h2 id="modalTitle" class="text-xl font-bold"></h2>
         <img id="modalImg" class="img-200 mx-auto" src="" alt="" />
-        <p><strong>Buying:</strong> <span id="modalBuy"></span></p>
-        <p><strong>Selling:</strong> <span id="modalSell"></span></p>
+        <p class="hidden"><strong>Buying:</strong> <span id="modalBuy"></span></p>
+        <p><strong>Price:</strong> <span id="modalprice"></span></p>
         <div>
           <strong>Description:</strong>
           <pre id="modalDesc" class="whitespace-pre-wrap text-slate-700"></pre>
@@ -146,10 +145,10 @@
       const durBtns=$$('.dur-btn');
       const btnLogin=$('#btnLogin'), loginErr=$('#loginErr');
       const signedAs=$('#signedAs'), btnLogout=$('#btnLogout');
-      const formAdd=$('#formAdd'), fName=$('#fName'), fBuy=$('#fBuy'), fSell=$('#fSell'), fImg=$('#fImg'), fDesc=$('#fDesc');
+      const formAdd=$('#formAdd'), fName=$('#fName'), fBuy=$('#fBuy'), fprice=$('#fprice'), fImg=$('#fImg'), fDesc=$('#fDesc');
       const tblBody=$('#tblBody'), inpSearch=$('#inpSearch');
       const btnExport=$('#btnExport'), inpFile=$('#inpFile'), btnClear=$('#btnClear');
-      const modal=$('#modal'), modalTitle=$('#modalTitle'), modalImg=$('#modalImg'), modalBuy=$('#modalBuy'), modalSell=$('#modalSell'), modalDesc=$('#modalDesc');
+      const modal=$('#modal'), modalTitle=$('#modalTitle'), modalImg=$('#modalImg'), modalBuy=$('#modalBuy'), modalprice=$('#modalprice'), modalDesc=$('#modalDesc');
       const btnEdit=$('#btnEdit'), btnDelete=$('#btnDelete'), btnClose=$('#btnClose');
 
       let items=[], currentId=null;
@@ -181,7 +180,7 @@
             <td class='py-2 pr-4 font-medium'>${escapeHtml(it.name)}</td>
             <td class='py-2 pr-4 max-w-[200px] truncate'>${escapeHtml(it.desc||"")}</td>
             <td class='py-2 pr-4'>${formatMoney(it.buy)}</td>
-            <td class='py-2 pr-4'>${formatMoney(it.sell)}</td>
+            <td class='py-2 pr-4'>${formatMoney(it.price)}</td>
             <td class='py-2 pr-4'><button data-id='${it.id}' class='view-btn text-blue-600'>View</button></td>`;
           tblBody.appendChild(tr);
         });
@@ -191,16 +190,16 @@
       function formatMoney(n){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
       function escapeHtml(s){return String(s||"").replace(/[&"'<>]/g,c=>({'&':'&amp;','"':'&quot;','\'':'&#39;','<':'&lt;','>':'&gt;'}[c]));}
 
-      formAdd.onsubmit=e=>{e.preventDefault();let obj={id:"id"+Date.now(),name:fName.value.trim(),buy:+fBuy.value||0,sell:+fSell.value||0,img:fImg.value.trim(),desc:fDesc.value.trim()};addItem(obj);formAdd.reset();};
+      formAdd.onsubmit=e=>{e.preventDefault();let obj={id:"id"+Date.now(),name:fName.value.trim(),buy:+fBuy.value||0,price:+fprice.value||0,img:fImg.value.trim(),desc:fDesc.value.trim()};addItem(obj);formAdd.reset();};
       inpSearch.oninput=()=>renderTable(inpSearch.value);
       btnExport.onclick=()=>{const blob=new Blob([JSON.stringify(items,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='inventory.json';a.click();};
       inpFile.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{items=JSON.parse(r.result);saveItems(items);renderTable(inpSearch.value);}catch{alert('Invalid JSON')}};r.readAsText(f);};
       btnClear.onclick=()=>{if(confirm('Delete all?')){items=[];saveItems(items);renderTable('')}};
 
-      function openModal(id){const it=items.find(x=>x.id===id);if(!it)return;currentId=id;modalTitle.textContent=it.name;modalImg.src=it.img;modalBuy.textContent=formatMoney(it.buy);modalSell.textContent=formatMoney(it.sell);modalDesc.textContent=it.desc||"";modal.classList.remove('hidden');}
+      function openModal(id){const it=items.find(x=>x.id===id);if(!it)return;currentId=id;modalTitle.textContent=it.name;modalImg.src=it.img;modalBuy.textContent=formatMoney(it.buy);modalprice.textContent=formatMoney(it.price);modalDesc.textContent=it.desc||"";modal.classList.remove('hidden');}
       btnClose.onclick=()=>modal.classList.add('hidden');
       btnDelete.onclick=()=>{removeItem(currentId);modal.classList.add('hidden');};
-      btnEdit.onclick=()=>{const it=items.find(x=>x.id===currentId);if(!it)return;fName.value=it.name;fBuy.value=it.buy;fSell.value=it.sell;fImg.value=it.img;fDesc.value=it.desc;removeItem(currentId);modal.classList.add('hidden');};
+      btnEdit.onclick=()=>{const it=items.find(x=>x.id===currentId);if(!it)return;fName.value=it.name;fBuy.value=it.buy;fprice.value=it.price;fImg.value=it.img;fDesc.value=it.desc;removeItem(currentId);modal.classList.add('hidden');};
 
       function loadAndRender(){items=loadItems();renderTable();}
 
