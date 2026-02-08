@@ -6,11 +6,11 @@
     <title>ATH Order</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-slate-50 text-gray-800">
+  <body class="bg-slate-900 text-black">
     <div class="max-w-6xl mx-auto p-6">
       <header class="flex items-center justify-between mb-6">
         <div class="flex items-center gap-4">
-          <h1 class="text-2xl font-bold">ATH Order</h1>
+          <h1 class="text-white text-2xl font-bold">ATH Order</h1>
           <button
             class="bg-lime-500 hover:bg-lime-900 px-6 py-2 rounded-2xl text-white font-bold"
           >
@@ -35,7 +35,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Left: Order Form -->
-        <section class="bg-white p-5 rounded shadow">
+        <section class="bg-slate-400 p-5 rounded shadow">
           <h2 class="text-lg font-semibold mb-3">Create Order</h2>
           <form id="orderForm" class="space-y-4" onsubmit="return false;">
             <div>
@@ -54,7 +54,6 @@
                 id="custPhone"
                 required
                 pattern="\d*"
-                type="number"
                 inputmode="numeric"
                 maxlength="14"
                 class="mt-1 block w-full border rounded p-2"
@@ -92,7 +91,7 @@
               <label class="block text-sm font-medium">Search Product</label>
               <input
                 id="productSearch"
-                class="mt-1 block w-full border rounded p-2 bg-slate-200"
+                class="mt-1 block w-full border rounded p-2 bg-green-200"
                 placeholder="Type product name... (searchable)"
               />
               <div
@@ -212,14 +211,14 @@
 
         <!-- Right: Product list + Preview -->
         <aside class="space-y-4">
-          <section class="bg-white p-5 rounded shadow">
+          <section class="bg-slate-400 p-5 rounded shadow">
             <h2 class="text-lg font-semibold mb-3">
               Products (visible to visitors)
             </h2>
-            <div id="productCatalog" class="grid grid-cols-2 gap-2 max-h-[200px] overflow-y-scroll"></div>
+            <div id="productCatalog" class="grid grid-cols-2 gap-2 max-h-[900px] overflow-y-scroll"></div>
           </section>
 
-          <section class="bg-white p-5 rounded shadow">
+          <section class="bg-slate-400 p-5 rounded shadow">
             <h2 class="text-lg font-semibold mb-3">Order Preview</h2>
             <pre
               id="orderPreview"
@@ -235,7 +234,7 @@
       id="adminModal"
       class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50 p-4"
     >
-      <div class="bg-white w-full max-w-4xl rounded shadow p-5 relative">
+      <div class="bg-slate-400 w-full max-w-4xl rounded shadow p-5 relative">
         <button
           id="closeAdminBtn"
           class="absolute top-2 right-2 px-2 py-1 bg-red-500 text-white rounded"
@@ -714,7 +713,7 @@
           .forEach((o, idx) => {
             // show newest first
             const div = document.createElement("div");
-            div.className = "border rounded p-3 bg-white shadow-sm";
+            div.className = "border rounded p-3 bg-slate-400 shadow-sm";
             const itemsHtml = o.items
               .map(
                 (it) =>
